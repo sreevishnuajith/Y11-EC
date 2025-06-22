@@ -45,6 +45,17 @@
       min-height: 80vh;
       padding: 2rem;
     }
+input[type=text] {
+  width: 50%;
+  padding: 9px 15px;
+  margin: 4px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
   </style>
 </head>
 <body>
@@ -59,28 +70,32 @@
       <li><a href="activity_trends.html">Activity Trends</a></li>
     </ul>
   </nav>
+
   <main class="main">
-    <div class="container"><br><br>
-      <h2>Tell Us About You</h2>
+    <div class="container">
+      <!--h2>Tell Us About You</h2-->
+      <label width="100%"> Tell us about yourself!!</label>
       <form id="userForm">
         <label for="Name">Resident Name:      
-        <input type="text" name="name" value=""></label>          
-        <label for="Age">Age:</label>         
+        <input type="text" name="name" value=""></label>     
+        <label for="Name">Email:      
+        <input type="text" name="email" value=""></label>        
+        <label for="Age">Age:      
         <select id="age" name="age">
           <option value="">Select...</option>
           <option value="under18">&lt;18</option>
           <option value="18-35">18–35</option>
           <option value="36-50">36–50</option>
           <option value="over65">&gt;65</option>
-        </select>
+        </select></label>  
 
-        <label for="gender">Gender:</label>
+        <label for="gender">Gender:
         <select id="gender" name="gender">
           <option value="">Select...</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
-        </select>
+        </select></label>
 
         <label>Interest Areas:</label>
         <div class="checkbox-group" id="interestGroup">
