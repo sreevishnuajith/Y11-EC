@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Interest Capture</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    nav {
+      background-color: #f1f1f1;
+      padding: 0.75rem 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      gap: 1rem;
+    }
+    nav li {
+      display: inline;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Active <span class="highlight">Neighbourhood</span></div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="landing_page.html">Home</a></li>
+      <li><a href="community_calendar.html">Community Calendar</a></li>
+      <li><a href="activity_trends.html">Activity Trends</a></li>
+    </ul>
+  </nav>
+
+  <main class="main">
+    <div class="container">
+      <h2>Tell Us About You</h2>
+      <form id="userForm">
+        <label for="age">Age Group:</label>
+        <select id="age" name="age">
+          <option value="">Select...</option>
+          <option value="under18">&lt;18</option>
+          <option value="18-35">18–35</option>
+          <option value="36-50">36–50</option>
+          <option value="over65">&gt;65</option>
+        </select>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+          <option value="">Select...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label>Interest Areas:</label>
+        <div class="checkbox-group" id="interestGroup">
+          <label><input type="checkbox" name="interest" value="stretching"> Fitness Corner Stretching</label>
+          <label><input type="checkbox" name="interest" value="cycling"> Cycling</label>
+          <label><input type="checkbox" name="interest" value="shopping"> Group Shopping</label>
+          <label><input type="checkbox" name="interest" value="church"> Church Visit</label>
+          <label><input type="checkbox" name="interest" value="temple"> Temple Visit</label>
+          <label><input type="checkbox" name="interest" value="social"> Grandparent Socials</label>
+          <label><input type="checkbox" name="interest" value="strength"> Strength Training</label>
+          <label><input type="checkbox" name="interest" value="swimming"> Swimming</label>
+          <label><input type="checkbox" name="interest" value="jogging"> Group Jogging</label>
+        </div>
+
+        <p class="error" id="errorMsg"></p>
+        <input type="submit" value="Submit" />
+      </form>
+      <div class="confirmation" id="confirmationMsg">
+        Thank you! Your preferences have been saved.
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("userForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const interests = Array.from(document.querySelectorAll("input[name='interest']:checked"))
+                            .map(el => el.value);
+
+      const errorMsg = document.getElementById("errorMsg");
+      const confirmationMsg = document.getElementById("confirmationMsg");
+      errorMsg.textContent = "";
+      confirmationMsg.style.display = "none";
+
+      if (!age) {
+        errorMsg.textContent = "Please select your age group.";
+        return;
+      }
+      if (!gender) {
+        errorMsg.textContent = "Please select your gender.";
+        return;
+      }
+      if (interests.length === 0) {
+        errorMsg.textContent = "Please select at least one interest area.";
+        return;
+      }
+
+      const userData = {
+        age,
+        gender,
+        interests
+      };
+
+      // Store temporarily in localStorage
+      localStorage.setItem("userProfile", JSON.stringify(userData));
+
+      // Show confirmation
+      confirmationMsg.style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>

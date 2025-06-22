@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity Trends</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chart-container {
+      max-width: 400px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 1rem;
+    }
+    nav {
+      background-color: #f1f1f1;
+      padding: 0.75rem 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      gap: 1rem;
+    }
+    nav li {
+      display: inline;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Active <span class="highlight">Neighbourhood</span></div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="active_lifestyle.html">Express Your Interests</a></li>
+      <li><a href="community_calendar.html">Community Calendar</a></li>
+      <li><a href="landing_page.html#join">Join Your Neighbours</a></li>
+      <li><a href="activity_trends.html">View Activity Trends</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="chart-container">
+      <h2>Participation by Activity</h2>
+      <canvas id="activityChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Participation by Age Group</h2>
+      <canvas id="ageChart"></canvas>
+    </div>
+  </main>
+
+  <script>
+    // Chart 1: Participation by Activity
+    const activityData = {
+      labels: [
+        'Group Jogging', 'Swimming', 'Cycling', 'Fitness Stretching', 'Strength Training',
+        'Group Shopping', 'Temple Visit', 'Church Visit', 'Grandparent Socials'
+      ],
+      datasets: [{
+        data: [33, 24, 18, 17, 16, 7, 4, 2, 2],
+        backgroundColor: [
+          '#4dc9f6', '#f67019', '#f53794', '#537bc4', '#acc236',
+          '#166a8f', '#00a950', '#58595b', '#8549ba'
+        ]
+      }]
+    };
+
+    new Chart(document.getElementById('activityChart'), {
+      type: 'pie',
+      data: activityData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    // Chart 2: Participation by Age Group
+    const ageGroupData = {
+      labels: ['>65', '50–65', '18–35', '<18', '36–50'],
+      datasets: [{
+        data: [37, 35, 21, 21, 12],
+        backgroundColor: [
+          '#36a2eb', '#ffce56', '#ff6384', '#4bc0c0', '#9966ff'
+        ]
+      }]
+    };
+
+    new Chart(document.getElementById('ageChart'), {
+      type: 'pie',
+      data: ageGroupData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

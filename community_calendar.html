@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Calendar</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .calendar-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f8ff;
+      color: #007bff;
+    }
+    .join-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .join-btn:hover {
+      background-color: #218838;
+    }
+    nav {
+      background-color: #f1f1f1;
+      padding: 0.75rem 1rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      gap: 1rem;
+    }
+    nav li {
+      display: inline;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Active <span class="highlight">Neighbourhood</span></div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="active_lifestyle.html">Express Your Interests</a></li>
+      <li><a href="community_calendar.html">Community Calendar</a></li>
+      <li><a href="landing_page.html#join">Join Your Neighbours</a></li>
+    </ul>
+  </nav>
+
+  <main class="calendar-container">
+    <h2>Weekly Community Calendar</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Activity</th>
+          <th>Time</th>
+          <th>Category</th>
+          <th>Participants</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="calendarBody">
+        <tr>
+          <td>Monday</td>
+          <td>Fitness Corner Stretching</td>
+          <td>7:00 AM - 8:00 AM</td>
+          <td>Fitness</td>
+          <td><span class="count">3</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td>Cycling</td>
+          <td>6:30 AM - 7:30 AM</td>
+          <td>Fitness</td>
+          <td><span class="count">5</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>Group Shopping</td>
+          <td>10:00 AM - 11:30 AM</td>
+          <td>Social</td>
+          <td><span class="count">2</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td>Church Visit</td>
+          <td>9:00 AM - 10:30 AM</td>
+          <td>Spiritual</td>
+          <td><span class="count">4</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>Swimming</td>
+          <td>7:00 AM - 8:00 AM</td>
+          <td>Fitness</td>
+          <td><span class="count">2</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>Grandparent Socials</td>
+          <td>4:00 PM - 5:30 PM</td>
+          <td>Social</td>
+          <td><span class="count">3</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>Group Jogging</td>
+          <td>6:30 AM - 7:30 AM</td>
+          <td>Fitness</td>
+          <td><span class="count">3</span></td>
+          <td><button class="join-btn" onclick="confirmJoin(this)">Join</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    function confirmJoin(button) {
+      const name = prompt("Please enter your name to confirm attendance:");
+      if (name && name.trim()) {
+        const countSpan = button.parentElement.parentElement.querySelector('.count');
+        let count = parseInt(countSpan.textContent, 10);
+        countSpan.textContent = count + 1;
+        alert(`Thanks, ${name}, you've been added to the activity!`);
+      } else {
+        alert("Name is required to join.");
+      }
+    }
+  </script>
+</body>
+</html>
